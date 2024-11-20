@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Semih Topuz</title>
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+      /* Modern Dark Mode Styling with Animations and Shapes */
+      body {
+        font-family: 'Open Sans', sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #121212;
+        color: #e0e0e0;
+        overflow-x: hidden;
+      }
+      nav {
+        background-color: #1f2937;
+        position: fixed;
+        top: 0;
+        width: 100%;
+        border-bottom: 1px solid #333;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.4);
+        transition: all 0.3s ease;
+        z-index: 1000;
+      }
+      nav ul {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        list-style: none;
+        justify-content: center;
+      }
+      nav li {
+        flex: 1;
+        text-align: center;
+      }
+      nav a {
+        color: #e0e0e0;
+        text-decoration: none;
+        display: block;
+        padding: 1em;
+        transition: background-color 0.3s, color 0.3s, transform 0.3s;
+      }
+      nav a:hover {
+        background-color: #374151;
+        color: #ffffff;
+        transform: scale(1.1);
+      }
+      nav ul.fixed-links {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        background-color: #1f2937;
+        padding: 0.5em 0;
+        display: flex;
+        justify-content: center;
+        z-index: 1000;
+      }
+      nav ul.fixed-links li {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      nav ul.fixed-links a {
+        display: inline-flex;
+        align-items: center;
+        flex-direction: column;
+        text-align: center;
+        padding: 0.5em;
+      }
+      .hero {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 40vh;
+        background: linear-gradient(135deg, #64ffda, #1f2937);
+        clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+        animation: fadeIn 2s ease;
+        overflow: hidden;
+        position: relative;
+      }
+
+      .hero .shapes-container {
+        position: relative;
+        width: 100%;
+        height: 100%;
+      }
+
+      .hero .shape {
+        font-size: 2.5em;
+        color: #64ffda;
+        position: absolute;
+        top: calc(90% * var(--random-top));
+        left: calc(100% * var(--random-left));
+        transform: rotate(calc(45deg * var(--random-rotation)));
+        transition: transform 0.3s ease;
+          }
+
+      .hero .shape:hover {
+        transform: scale(1.5) rotate(calc(360deg * var(--random-rotation)));
+      }
+
+      @keyframes pulse {
+        0% {
+          transform: scale(1);
+          opacity: 1;
+        }
+        50% {
+          transform: scale(1.2);
+          opacity: 0.7;
+        }
+        100% {
+          transform: scale(1);
+          opacity: 1;
+        }
+      }
+
+      .job-info {
+        padding: 2em;
+        background-color: #1f2937;
+        border-left: 5px solid #64ffda;
+        margin: 2em 0;
+        border-radius: 10px;
+        animation: fadeInUp 1s ease;
+      }
+      .job-info h2 {
+        color: #64ffda;
+        font-size: 1.8em;
+        margin-bottom: 0.5em;
+      }
+      .job-info p {
+        margin: 0.5em 0;
+        font-size: 1.1em;
+      }
+      .job-info .university-name {
+        color: #ff6347;
+        font-weight: bold;
+      }
+      .research {
+        padding: 2em;
+      }
+      .research h2 {
+        text-align: left;
+        color: #64ffda;
+        animation: fadeInUp 1s ease;
+      }
+      .research ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        animation: fadeInUp 1s ease;
+      }
+      .research li {
+        margin: 0.5em 0;
+        position: relative;
+        padding-left: 20px;
+        flex: 1 1 calc(100% - 2em);
+        background: #1f2937;
+        padding: 20px;
+        border-radius: 15px;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+        transition: transform 0.3s;
+      }
+      .research li:hover {
+        transform: scale(1.05);
+      }
+      .research li i {
+        font-size: 2.5em;
+        color: #64ffda;
+        margin-bottom: 10px;
+      }
+      .research-areas {
+        display: flex;
+        gap: 2em;
+      }
+      .research-areas .area-box {
+        flex: 1;
+        padding: 20px;
+        background: #1f2937;
+        border-radius: 15px;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+        text-align: center;
+        transition: transform 0.3s;
+      }
+      .research-areas .area-box:hover {
+        transform: scale(1.05);
+      }
+      .research-areas .area-box i {
+        font-size: 3em;
+        color: #64ffda;
+        margin-bottom: 10px;
+        display: block;
+      }
+      .research-areas .area-box span {
+        display: block;
+        margin-top: 10px;
+        font-size: 1.2em;
+      }
+      .box {
+        display: inline-block;
+        margin-top: 10px;
+        background: #1f2937;
+        padding: 10px;
+        border: 1px solid #64ffda;
+        border-radius: 10%/20%;
+        background-clip: padding-box;
+        text-align: center;
+        animation: bounceIn 1s;
+      }
+      .button {
+        font-size: 1em;
+        padding: 10px;
+        color: #64ffda;
+        border: 2px solid #64ffda;
+        border-radius: 20px/50px;
+        text-decoration: none;
+        cursor: pointer;
+        transition: all 0.3s ease-out;
+        position: relative;
+        overflow: hidden;
+        z-index: 1;
+      }
+      .button:before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 300%;
+        height: 300%;
+        background: rgba(255, 255, 255, 0.15);
+        transition: all 0.5s ease;
+        transform: translate(-50%, -50%) scale(0.1);
+        border-radius: 50%;
+        z-index: -1;
+      }
+      .button:hover:before {
+        transform: translate(-50%, -50%) scale(1);
+      }
+      .button:hover {
+        background: #64ffda;
+        color: #1f2937;
+      }
+      .overlay {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: rgba(0, 0, 0, 0.85);
+        transition: opacity 500ms;
+        visibility: hidden;
+        overflow-y: scroll;
+        -webkit-overflow-scrolling: touch;
+        opacity: 0;
+        z-index: 1001;
+      }
+      .overlay:target {
+        visibility: visible;
+        opacity: 1;
+      }
+      .popup {
+        margin: 70px auto;
+        padding: 20px;
+        background: #1f2937;
+        border-radius: 5px;
+        width: 30%;
+        position: relative;
+        transition: all 5s ease-in-out;
+        color: #e0e0e0;
+        z-index: 1002;
+      }
+      .popup h2 {
+        margin-top: 0;
+        color: #64ffda;
+        font-family: 'Open Sans', sans-serif;
+      }
+      .popup .close {
+        position: absolute;
+        top: 20px;
+        right: 30px;
+        transition: all 200ms;
+        font-size: 30px;
+        font-weight: bold;
+        text-decoration: none;
+        color: #64ffda;
+      }
+      .popup .close:hover {
+        color: #ffffff;
+      }
+      .popup .content {
+        max-height: 30%;
+        overflow: auto;
+      }
+      @media screen and (max-width: 700px) {
+        .box {
+          width: 70%;
+        }
+        .popup {
+          width: 70%;
+        }
+      }
+      img {
+        border-radius: 50%;
+        border: 10px solid #64ffda;
+        animation: rotateIn 1s;
+      }
+      @keyframes fadeIn {
+        0% {
+          opacity: 0;
+        }
+        100% {
+          opacity: 1;
+        }
+      }
+      @keyframes slideIn {
+        0% {
+          transform: translateX(-100%);
+        }
+        100% {
+          transform: translateX(0);
+        }
+      }
+      @keyframes fadeInUp {
+        0% {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      @keyframes bounceIn {
+        0%, 20%, 50%, 80%, 100% {
+          transform: translateY(0);
+        }
+        40% {
+          transform: translateY(-20px);
+        }
+        60% {
+          transform: translateY(-10px);
+        }
+      }
+      @keyframes pulse {
+        0% {
+          transform: scale(1);
+          opacity: 1;
+        }
+        50% {
+          transform: scale(1.2);
+          opacity: 0.7;
+        }
+        100% {
+          transform: scale(1);
+          opacity: 1;
+        }
+      }
+      @keyframes rotateIn {
+        0% {
+          transform: rotate(-360deg);
+          opacity: 0;
+        }
+        100% {
+          transform: rotate(0);
+          opacity: 1;
+        }
+      }
+      .highlight {
+        color: #64ffda;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="hero">
+        <div class="shapes-container">
+            <div class="shape" style="--random-top: 0.3; --random-left: 0.4; --random-rotation: 0.1;"><i class="fas fa-user-tie"></i></div>
+            <div class="shape" style="--random-top: 0.5; --random-left: 0.8; --random-rotation: 0.2;"><i class="fas fa-lightbulb"></i></div>
+            <div class="shape" style="--random-top: 0.7; --random-left: 0.3; --random-rotation: 0.3;"><i class="fas fa-microscope"></i></div>
+            <div class="shape" style="--random-top: 0.2; --random-left: 0.6; --random-rotation: 0.4;"><i class="fas fa-brain-circuit"></i></div>
+            <div class="shape" style="--random-top: 0.4; --random-left: 0.2; --random-rotation: 0.6;"><i class="fas fa-flask"></i></div>
+            <div class="shape" style="--random-top: 0.6; --random-left: 0.7; --random-rotation: 0.8;"><i class="fas fa-chart-bar"></i></div>
+            <div class="shape" style="--random-top: 0.1; --random-left: 0.9; --random-rotation: 0.7;"><i class="fas fa-drafting-compass"></i></div>
+            <div class="shape" style="--random-top: 0.3; --random-left: 0.5; --random-rotation: 0.6;"><i class="fas fa-laptop-code"></i></div>
+            <div class="shape" style="--random-top: 0.5; --random-left: 0.1; --random-rotation: 0.7;"><i class="fas fa-chess-knight"></i></div>
+            <div class="shape" style="--random-top: 0.8; --random-left: 0.4; --random-rotation: 0.8;"><i class="fas fa-sitemap"></i></div>
+            <div class="shape" style="--random-top: 0.4; --random-left: 0.3; --random-rotation: 0.1;"><i class="fas fa-calculator"></i></div>
+            <div class="shape" style="--random-top: 0.6; --random-left: 0.6; --random-rotation: 0.2;"><i class="fas fa-project-diagram"></i></div>
+            <div class="shape" style="--random-top: 0.7; --random-left: 0.8; --random-rotation: 0.3;"><i class="fas fa-bullseye"></i></div>
+            <div class="shape" style="--random-top: 0.2; --random-left: 0.7; --random-rotation: 0.4;"><i class="fas fa-network-wired"></i></div>
+            <div class="shape" style="--random-top: 0.8; --random-left: 0.5; --random-rotation: 0.8;"><i class="fas fa-globe"></i></div>
+            <div class="shape" style="--random-top: 0.6; --random-left: 0.3; --random-rotation: 0.7;"><i class="fas fa-infinity"></i></div>
+            <div class="shape" style="--random-top: 0.4; --random-left: 0.1; --random-rotation: 0.8;"><i class="fas fa-vial"></i></div>
+            <div class="shape" style="--random-top: 0.8; --random-left: 0.6; --random-rotation: 0.9;"><i class="fas fa-file-alt"></i></div>
+            <div class="shape" style="--random-top: 0.3; --random-left: 0.2; --random-rotation: 0.4;"><i class="fas fa-chart-pie"></i></div>
+            <div class="shape" style="--random-top: 0.1; --random-left: 0.6; --random-rotation: 0.1;"><i class="fas fa-grip-horizontal"></i></div>
+            <div class="shape" style="--random-top: 0.2; --random-left: 0.4; --random-rotation: 0.2;"><i class="fas fa-clipboard-list-check"></i></div>
+            <div class="shape" style="--random-top: 0.7; --random-left: 0.9; --random-rotation: 0.3;"><i class="fas fa-question-circle"></i></div>
+            <div class="shape" style="--random-top: 0.4; --random-left: 0.8; --random-rotation: 0.8;"><i class="fas fa-book-reader"></i></div>
+            <div class="shape" style="--random-top: 0.5; --random-left: 0.7; --random-rotation: 0.7;"><i class="fas fa-users-cog"></i></div>
+            <div class="shape" style="--random-top: 0.6; --random-left: 0.4; --random-rotation: 0.9;"><i class="fas fa-layer-group"></i></div>
+            <div class="shape" style="--random-top: 0.8; --random-left: 0.2; --random-rotation: 0.8;"><i class="fas fa-atom"></i></div>         
+        </div>
+      </div>
+    </div>
+    <div class="job-info">
+      <h2>Semih Topuz</h2>
+      <p>Educational Measurement and Evaluation</p>
+      <p>Department of Educational Sciences</p>
+      <p>Research Assistant at <span class="university-name">Baskent University</span></p>
+      <p>PhD Student at <span class="university-name">Hacettepe University</span></p>
+    </div>
+    <div class="research">
+        <h2>Research Areas</h2>
+        <div class="research-areas">
+          <div class="area-box">
+            <i class="fas fa-chart-line"></i>
+            <span>Psychometry</span>
+          </div>
+          <div class="area-box">
+            <i class="fas fa-ruler"></i>
+            <span>Educational Measurement</span>
+          </div>
+          <div class="area-box">
+            <i class="fas fa-clipboard-list"></i>
+            <span>Large Scale Assessment</span>
+          </div>
+        </div>
+    </div>
+    <div class="research">
+      <h2>Researches</h2>
+      <ul>
+        <li>
+          <p>Topuz, S., Berberoglu, G., Kınay Çiçek, E, & Demirus, K. B. (2024). Can computer adaptive version of students' ratings of instruction provide valid results? <em>9th Conference of the International Association for Computerized Adaptive Testing, Türkiye.</em></p>
+          <div class="box">
+            <a class="button" href="#popup5">Summary</a>
+          </div>
+        </li>
+        <div id="popup5" class="overlay">
+          <div class="popup">
+              <h2>Can computer adaptive version of students' ratings of instruction provide valid results?</h2>
+              <a class="close" href="#">&times;</a>
+              <div class="content">
+                This paper examines whether a computer adaptive version of students' course evaluations provides similar validity and reliability compared to traditional full-form assessments. The study uses a simulation approach to determine if adaptive testing can effectively measure student feedback while reducing the number of items answered by each student. </div>
+          </div>
+      </div>
+
+        <li>
+          <p>Topuz, S. (2024). Examination of measurement invariance of the PISA reading skills test across language and country groups. <em>9th International Congress on Measurement and Evaluation in Education and Psychology, Türkiye.</em></p>
+          <div class="box">
+            <a class="button" href="#popup6">Summary</a>
+          </div>
+        </li>
+        <div id="popup6" class="overlay">
+          <div class="popup">
+              <h2>Examination of measurement invariance of the PISA reading skills test across language and country groups</h2>
+              <a class="close" href="#">&times;</a>
+              <div class="content">
+                This research investigates the measurement invariance of the PISA reading skills assessment across different language and country groups. It focuses on whether the test measures the same constructs equivalently, which is crucial for making valid cross-national comparisons of student performance.
+              </div>
+          </div>
+      </div>
+
+        <li>
+          <p>Topuz, S., Berberoğlu, G., Kınay Çiçek, E., & Demirus, K. B. (2023). Can the Course and Instructor Evaluation Form be Applied as a Computer Adaptive Test? <em>1st National Symposium on Computer Adaptive Test Research, Türkiye.</em></p>
+          <div class="box">
+            <a class="button" href="#popup4">Summary</a>
+          </div>
+        </li>
+        <div id="popup4" class="overlay">
+          <div class="popup">
+              <h2>Can the Course and Instructor Evaluation Form be Applied as a Computer Adaptive Test?</h2>
+              <a class="close" href="#">&times;</a>
+              <div class="content">
+                In this study, the extent to which the results obtained from long questionnaire forms with fewer questions can be achieved by using different application strategies within the scope of computerized adaptive testing applications is examined. In this study, the data set obtained from a 16-question, one-dimensional course and instructor evaluation form applied in a foundation university was used to simulate adaptive testing applications. </div>
+          </div>
+      </div>
+
+        <li>
+          <p>Topuz, S. (2022). Investigation of Measurement Invariance of Survey on Social and Emotional Skills by Language Family. <em>8th International Congress on Measurement and Evaluation in Education and Psychology, Turkiye.</em></p>
+          <div class="box">
+            <a class="button" href="#popup1">Summary</a>
+          </div>
+        </li>
+        <div id="popup1" class="overlay">
+            <div class="popup">
+                <h2>Investigation of Measurement Invariance of Survey on Social and Emotional Skills by Language Family.</h2>
+                <a class="close" href="#">&times;</a>
+                <div class="content">
+                  The purpose of this study was to examine the measurement invariance of the Social and Emotional Skills Questionnaire administered by the Organization for Economic Co-operation and Development (OECD) according to language families. Two language families, consisting of nine of the ten languages in which the questionnaire was administered, were used as grouping variables. The study investigated whether it would be correct to compare the cities where the questionnaire was applied without taking into account the effect of languages. To this end, 120 items on a five-point scale obtained from the questionnaire were tested to determine whether and to what extent measurement invariance due to language families was achieved for each of the fifteen sub-dimensions of the questionnaire. English, French, Portuguese, Russian, Spanish, French, Portuguese, Russian, Spanish and Swedish were divided into two groups as the Indo-European language family; Turkish, Finnish and Korean were divided into two groups as the Altaic language family. The data set obtained from 53739 responses was analyzed for invariance. It was observed that two of the sub-dimensions of the questionnaire provided configural invariance, eight metric invariance and one scale invariance. Four sub-dimensions did not meet the unidimensionality assumption. The results obtained provide evidence that the language family in which the questionnaire was administered may pose an obstacle to the accurate reflection of students' social and emotional skills.                </div>
+            </div>
+        </div>
+
+        <li>
+          <p>&Ccedil;ok, F., G&uuml;&ccedil;l&uuml;, C. H., &Ouml;zdoğan, H. K., &amp; Topuz, S. (2022). Adaptation of Helicopter Parenting and Autonomy Supportive Behaviors to Turkish: Validity and Reliability Study.&nbsp;<em>Ankara University Journal of Faculty of Educational Sciences (JFES) , 55 </em>(2) , 339-360 . <a href="https://doi.org/10.30964/auebfd.886761">https://doi.org/10.30964/auebfd.886761</a>&nbsp;</p>
+          <div class="box">
+            <a class="button" href="#popup2">Summary</a>
+          </div>
+        </li>
+        <div id="popup2" class="overlay">
+            <div class="popup">
+                <h2>Adaptation of Helicopter Parenting and Autonomy Supportive Behaviors to Turkish: Validity and Reliability Study</h2>
+                <a class="close" href="#">&times;</a>
+                <div class="content">
+                    The aim of this study is to adapt the Helicopter Parenting and Autonomy Supportive Behaviour Scale developed by Schiffrin, Liss, Miles-McLean, Geary, Erchull, and Tashner to Turkish and to examine its validity and reliability. The original form of the scale consists of 15 items and two dimensions: Helicopter Parenting and Autonomy Supportive Behaviours. After communicating with the original authors the translation process the 6-point likert form was administered to 381 (78%) females, 107 (22%) males total of 488 university students. Confirmatory factor analysis was conducted to obtain evidence for the validity of the scale. The scale was found to fit well with the two dimensional structure as in the original form (χ2 = 223.02, df = 87, χ2/df = 2.56, p < .001, RMSEA = .060, SRMR = .070, CFI = .97, NNFI = .96, NFI = .95, GFI = .98). To establish reliability, Cronbach Alpha internal consistency coefficient has been calculated. The Cronbach Alpha coefficient was α = .80 for the helicopter parenting dimension and α = .80 for the autonomy supportive behaviours dimension. Correlations were found to vary between .31-.64. In all items, a significant difference was found between the means of the upper-lower 27% groups. The results yield that, Helicopter Parenting and Autonomy Supportive Behaviour Scale consisting of 15 items is a valid and reliable instrument to examine helicopter parenting and autonomy supportive behaviours of parents from the perspective of university students in Turkey.
+                </div>
+            </div>
+        </div>
+
+        <li>
+          <p>Topuz, S. (2021). <em>Comparison of analysis results obtained from WEKA and Orange data mining software in educational data mining</em> [Master&#39;s thesis]. <span class="highlight">Hacettepe University</span>. <a href="http://www.openaccess.hacettepe.edu.tr:8080/xmlui/handle/11655/25275">Openaccess Hacettepe</a></p>
+          <div class="box">
+            <a class="button" href="#popup3">Summary</a>
+          </div>
+        </li>
+        <div id="popup3" class="overlay">
+            <div class="popup">
+                <h2>Comparison of analysis results obtained from WEKA and Orange data mining software in educational data mining</h2>
+                <a class="close" href="#">&times;</a>
+                <div class="content">
+                    In this study, WEKA and Orange programs, which are frequently used in data mining, are compared based on the classification methods that can be used in data mining in education. The results of the ABIDE exam conducted by the Ministry of National Education were used in the study. During the analysis process, k-nearest neighbor, random forest, support vector machine, naive bayes and artificial neural networks methods were used to estimate the data of students classified according to their Turkish course scores by using demographic and psycho-social variables. In the second phase of the research, the reliability and cross validity values of the measurement results obtained from the students who were classified with the classification algorithms determined within the scope of the research were examined. According to the results obtained within the scope of the research; It was observed that Orange in k-nearest neighbor and artificial neural networks algorithms and WEKA in support vector machine and naive bayes algorithm have higher correct classification rates. Random forest algorithm has been found to have higher correct classification rate in binary and quinary classification in WEKA and Orange package program, respectively. In addition, the artificial neural networks algorithm obtained the highest correct classification rate in the scores classified as binary and quinary.
+                </div>
+            </div>
+        </div>
+
+        </li>
+      </ul>
+  </div>
+  <nav>
+    <ul class="fixed-links">
+      <li><a href="https://scholar.google.com.tr/citations?user=MjAhoTkAAAAJ&hl">Scholar <br><i class="fas fa-graduation-cap"></i></a></li>
+      <li><a href="https://linkedin.com/in/smhtpz/">LinkedIn <br><i class="fab fa-linkedin"></i></a></li>
+      <li><a href="https://www.researchgate.net/profile/Semih-Topuz">ResearchGate <br><i class="fab fa-researchgate"></i></a></li>
+      <li><a href="https://orcid.org/0000-0003-1398-4507">ORCID <br><i class="fab fa-orcid"></i></a></li>
+    </ul>
+  </nav>
+  </body>
+</html>
